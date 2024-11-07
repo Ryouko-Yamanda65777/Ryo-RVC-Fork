@@ -94,11 +94,8 @@ with gr.Blocks(title="🔊 Nex RVC Mobile",theme=gr.themes.Base()) as app:
                 )
 
                 vc_transform0 = gr.Number(
-
-                    label="Pitch", 
-
-                    value=0
-
+                  label="Pitch", 
+                  value=0
                 )
 
                 but0 = gr.Button(value="Convert", variant="primary")
