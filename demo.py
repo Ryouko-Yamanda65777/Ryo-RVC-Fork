@@ -31,7 +31,24 @@ model_library = CachedModels()
 
 
 
+def download_audio(url):
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': 'ytdl/%(title)s.%(ext)s',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'wav',
+            'preferredquality': '192',
+        }],
+    }
 
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        info_dict = ydl.extract_info(url, download=True)
+        file_path = ydl.prepare_filename(info_dict).rsplit('.', 1)[0] + '.wav'
+        sample_rate, audio_data = read(file_path)
+        audio_array = np.asarray(audio_data, dtype=np.int16)
+
+        return sample_rate, audio_array
 
 
 
