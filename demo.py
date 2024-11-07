@@ -73,8 +73,8 @@ def roformer_separator(roformer_audio, roformer_output_format="wav", roformer_ov
 
 
 
-with gr.Blocks(title="🔊 Ryo RVC Mobile") as app:
-    gr.Markdown("# Ryo RVC MOBILE GUI")
+with gr.Blocks(title="🔊 RYO RVC fork") as app:
+    gr.Markdown("# RYO RVC fork")
     with gr.Tabs():
 
         with gr.TabItem("Inference"):
@@ -165,29 +165,15 @@ with gr.Blocks(title="🔊 Ryo RVC Mobile") as app:
 
                                 roformer_button = gr.Button("Separate!", variant = "primary")
                             with gr.Column():
-                                roformer_stem1 = gr.Audio(
+                                roformer_stem = gr.Textbox(
                                     
-                                    show_download_button = True,
-                    
                                     interactive = False,
                                     
-                                    label = "Stem 1",
+                                    label = "Output",
                     
-                                    type = "filepath"
                 
                                 )
                 
-                                roformer_stem2 = gr.Audio(
-                    
-                                    show_download_button = True,
-                    
-                                    interactive = False,
-                    
-                                    label = "Stem 2",
-                    
-                                    type = "filepath"
-                
-                                )
                                 
                     with gr.Row():
 
@@ -235,7 +221,7 @@ with gr.Blocks(title="🔊 Ryo RVC Mobile") as app:
 
                             outputs=[input_audio0])
 
-                        roformer_button.click(roformer_separator, [roformer_audio], [roformer_stem1, roformer_stem2])
+                        roformer_button.click(roformer_separator, [roformer_audio], [roformer_stem])
         
 
                 with gr.Column():
