@@ -59,25 +59,21 @@ def roformer_separator(roformer_audio, roformer_output_format="wav", roformer_ov
   random_id = str(random.randint(10000, 99999))
   pattern = f"{random_id}"
   output_path = f"{now_dir}/audios"
-  os.makedirs("outputs", exist_ok=True)
+os.makedirs("outputs", exist_ok=True)
   write(f'{random_id}.wav', roformer_audio[0], roformer_audio[1])
   full_roformer_model = "model_bs_roformer_ep_317_sdr_12.9755.ckpt"
   prompt = f"audio-separator {random_id}.wav --model_filename {full_roformer_model} --output_dir={output_path} --output_format={roformer_output_format} --normalization=0.9 --mdxc_overlap={roformer_overlap} --mdxc_segment_size={roformer_segment_size}"
   os.system(prompt)
+  instrumental_path = f"{output_path}/{random_id}_(Instrumental)_model_bs_roformer_ep_317_sdr_12.wav"
+  os.remove(instrumental_path)
 
-  for file in os.listdir(directory):
-    if re.search(pattern, file):
-      files_list.append(os.path.join(directory, file))
 
-  stem1_file = files_list[0]
-  stem2_file = files_list[1]
-
-  return stem1_file, stem2_file
+  return "audio separating success!"
 
 
 
 
-with gr.Blocks(title="🔊 Ryo RVC Mobile",theme=gr.themes.Base()) as app:
+with gr.Blocks(title="🔊 Ryo RVC Mobile") as app:
     gr.Markdown("# Ryo RVC MOBILE GUI")
     with gr.Tabs():
 
@@ -108,7 +104,7 @@ with gr.Blocks(title="🔊 Ryo RVC Mobile",theme=gr.themes.Base()) as app:
 
                   visible=False,
 
-                  interactive=True,
+                  interactive=False,
 
                 )
 
@@ -272,21 +268,20 @@ with gr.Blocks(title="🔊 Ryo RVC Mobile",theme=gr.themes.Base()) as app:
 
                         )
 
-                    output_player = gr.Audio(label="Output",interactive=False)
-
+                    
                     with gr.Accordion("General Settings", open=False):
 
                         f0method0 = gr.Radio(
 
                             label="Method",
 
-                            choices=["pm"],
+                            choices=["pm", "crepe", "dio", "harvest", "rmvpe"],
 
-                            value="pm",
+                            value="rmvpe",
 
-                            interactive=False,
+                            interactive=True,
 
-                            visible=False,
+                            
 
                         )
 
@@ -371,6 +366,8 @@ with gr.Blocks(title="🔊 Ryo RVC Mobile",theme=gr.themes.Base()) as app:
                         visible=False#Not used here
 
                     )
+
+                    output_player = gr.Audio(label="Output",interactive=False)
 
                     refresh_button.click(
 
