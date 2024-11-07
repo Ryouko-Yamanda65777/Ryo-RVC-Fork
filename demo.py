@@ -75,7 +75,9 @@ with gr.Blocks(title="🔊 Nex RVC Mobile",theme=gr.themes.Base()) as app:
               refresh_button = gr.Button("Refresh", variant="primary")
 
               vc_transform0 = gr.Number(label="Pitch", value=0)
-              
+
+              but0 = gr.Button(value="Convert", variant="primary")
+
                 
               spk_item = gr.Slider(
 
@@ -97,8 +99,7 @@ with gr.Blocks(title="🔊 Nex RVC Mobile",theme=gr.themes.Base()) as app:
 
                 
 
-                but0 = gr.Button(value="Convert", variant="primary")
-
+                
             with gr.Row():
 
                 with gr.Column():
