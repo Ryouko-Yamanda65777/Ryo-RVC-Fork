@@ -128,7 +128,7 @@ with gr.Blocks(title="🔊 Nex RVC Mobile",theme=gr.themes.Base()) as app:
 
                             record_button=gr.Microphone(label="OR Record audio.", type="filepath")
 
-                        with gr.TabItem("UVR", visible=False):
+                        with gr.TabItem("UVR"):
 
                             with gr.Row():
 
@@ -812,6 +812,8 @@ with gr.Blocks(title="🔊 Nex RVC Mobile",theme=gr.themes.Base()) as app:
 
                             )
 
+                        
+                    with gr.Row():
                         but1 = gr.Button("1. Process", variant="primary")
 
                         but2 = gr.Button("2. Extract Features", variant="primary")
@@ -822,7 +824,6 @@ with gr.Blocks(title="🔊 Nex RVC Mobile",theme=gr.themes.Base()) as app:
 
                         info3 = gr.Textbox(label="Information", value="", max_lines=10)
 
-                    with gr.Row():
 
                         download_model = gr.Button('5.Download Model')
 
