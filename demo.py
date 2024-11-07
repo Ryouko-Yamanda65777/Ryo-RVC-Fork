@@ -28,7 +28,7 @@ os.makedirs("audios",exist_ok=True)
 model_library = CachedModels()
 
 
-
+now_dir = os.getcwd()
 
 
 def download_audio(url):
@@ -55,13 +55,14 @@ def download_audio(url):
 def roformer_separator(roformer_audio, roformer_output_format="wav", roformer_overlap="4", roformer_segment_size="256"):
   files_list = []
   files_list.clear()
-  directory = "./audios"
+  directory = f"{now_dir}/audios"
   random_id = str(random.randint(10000, 99999))
   pattern = f"{random_id}"
+  output_path = f"{now_dir}/audios"
   os.makedirs("outputs", exist_ok=True)
   write(f'{random_id}.wav', roformer_audio[0], roformer_audio[1])
   full_roformer_model = "model_bs_roformer_ep_317_sdr_12.9755.ckpt"
-  prompt = f"audio-separator {random_id}.wav --model_filename {full_roformer_model} --output_dir=./outputs --output_format={roformer_output_format} --normalization=0.9 --mdxc_overlap={roformer_overlap} --mdxc_segment_size={roformer_segment_size}"
+  prompt = f"audio-separator {random_id}.wav --model_filename {full_roformer_model} --output_dir={output_path} --output_format={roformer_output_format} --normalization=0.9 --mdxc_overlap={roformer_overlap} --mdxc_segment_size={roformer_segment_size}"
   os.system(prompt)
 
   for file in os.listdir(directory):
@@ -76,8 +77,8 @@ def roformer_separator(roformer_audio, roformer_output_format="wav", roformer_ov
 
 
 
-with gr.Blocks(title="🔊 Nex RVC Mobile",theme=gr.themes.Base()) as app:
-    gr.Markdown("# Nex RVC MOBILE GUI")
+with gr.Blocks(title="🔊 Ryo RVC Mobile",theme=gr.themes.Base()) as app:
+    gr.Markdown("# Ryo RVC MOBILE GUI")
     with gr.Tabs():
 
         with gr.TabItem("Inference"):
