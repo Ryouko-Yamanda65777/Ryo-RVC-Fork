@@ -77,15 +77,12 @@ def roformer_separator(roformer_audio, roformer_output_format="wav", roformer_ov
 
 
 with gr.Blocks(title="🔊 Nex RVC Mobile",theme=gr.themes.Base()) as app:
-
     gr.Markdown("# Nex RVC MOBILE GUI")
-  
     with gr.Tabs():
-        voice_model = gr.Dropdown(label="AI Voice", choices=sorted(names), value=lambda:sorted(names)[0] if len(sorted(names)) > 0 else '', interactive=True)
-
-        
 
         with gr.TabItem("Inference"):
+            voice_model = gr.Dropdown(label="AI Voice", choices=sorted(names), value=lambda:sorted(names)[0] if len(sorted(names)) > 0 else '', interactive=True)
+
 
             with gr.Row():
                                   
