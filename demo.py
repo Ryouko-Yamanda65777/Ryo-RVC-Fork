@@ -75,21 +75,21 @@ with gr.Blocks(title="🔊 Nex RVC Mobile",theme=gr.themes.Base()) as app:
               refresh_button = gr.Button("Refresh", variant="primary")
 
                 
-                spk_item = gr.Slider(
+              spk_item = gr.Slider(
 
-                    minimum=0,
+                  minimum=0,
 
-                    maximum=2333,
+                  maximum=2333,
 
-                    step=1,
+                  step=1,
 
-                    label="Speaker ID",
+                  label="Speaker ID",
 
-                    value=0,
+                  value=0,
 
-                    visible=False,
+                  visible=False,
 
-                    interactive=True,
+                  interactive=True,
 
                 )
 
