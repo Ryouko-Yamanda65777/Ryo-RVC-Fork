@@ -59,7 +59,7 @@ def roformer_separator(roformer_audio, roformer_output_format="wav", roformer_ov
   random_id = str(random.randint(10000, 99999))
   pattern = f"{random_id}"
   output_path = f"{now_dir}/audios"
-os.makedirs("outputs", exist_ok=True)
+  os.makedirs("outputs", exist_ok=True)
   write(f'{random_id}.wav', roformer_audio[0], roformer_audio[1])
   full_roformer_model = "model_bs_roformer_ep_317_sdr_12.9755.ckpt"
   prompt = f"audio-separator {random_id}.wav --model_filename {full_roformer_model} --output_dir={output_path} --output_format={roformer_output_format} --normalization=0.9 --mdxc_overlap={roformer_overlap} --mdxc_segment_size={roformer_segment_size}"
